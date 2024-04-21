@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
 
 function App() {
+
+  const lightBlue = "#add8e6";
+
+  const [hoverEffect, setHoverEffect] = useState(false);
+  const [headingText, setHeadingText] = useState("Hello There!");
+
+  function handleClick() {
+    setHeadingText("Submitted!");
+  };
+
+  function handleMouseOver() {
+    console.log("You're Logged In");
+    setHeadingText("You've hovered over Submit!");
+    setHoverEffect(true);
+  };
+
+  function handleMouseOut() {
+    setHeadingText("But now you're not hovering..")
+    setHoverEffect(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>{headingText}</h1>
+      <input type="text" placeholder="What's your name?" />
+      <button 
+      onClick={handleClick} 
+      onMouseOver={handleMouseOver} 
+      onMouseOut={handleMouseOut} 
+      style={{backgroundColor: hoverEffect ? "#ffffffaf" : "white"}}
+      >
+        Submit
+      </button>
     </div>
   );
 }
