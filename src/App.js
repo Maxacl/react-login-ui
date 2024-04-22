@@ -1,39 +1,52 @@
 import React, {useState} from "react";
 
 function App() {
+  // const [hoverEffect, setHoverEffect] = useState(false);
+  const [headingText, setHeadingText] = useState("");
+  const [userName, setUserName] = useState("");
 
-  const lightBlue = "#add8e6";
-
-  const [hoverEffect, setHoverEffect] = useState(false);
-  const [headingText, setHeadingText] = useState("Hello There!");
+  function handleInput(event) {
+    setUserName(event.target.value)
+    console.log(`This is the event.target.value: ${event.target.value}`)
+    console.log(`This is the userName: ${userName}`);
+  };
 
   function handleClick() {
-    setHeadingText("Submitted!");
+    setHeadingText(userName);
+    console.log(`This is the userName when clicked: ${userName}`)
   };
 
-  function handleMouseOver() {
-    console.log("You're Logged In");
-    setHeadingText("You've hovered over Submit!");
-    setHoverEffect(true);
-  };
 
-  function handleMouseOut() {
-    setHeadingText("But now you're not hovering..")
-    setHoverEffect(false);
-  };
+  // function handleMouseOver() {
+  //   setHeadingText("You've hovered over Submit!");
+  //   setHoverEffect(true);
+  // };
+
+  // function handleMouseOut() {
+  //   setHoverEffect(false);
+  // };
+
 
   return (
     <div className="container">
-      <h1>{headingText}</h1>
-      <input type="text" placeholder="What's your name?" />
+      <h1>Hello {headingText}</h1>
+      
+      <input 
+      onChange={handleInput} 
+      type="text" 
+      placeholder="What's your name?" 
+      value={userName}
+      />
+
       <button 
       onClick={handleClick} 
-      onMouseOver={handleMouseOver} 
-      onMouseOut={handleMouseOut} 
-      style={{backgroundColor: hoverEffect ? "#ffffffaf" : "white"}}
+      // onMouseOver={handleMouseOver} 
+      // onMouseOut={handleMouseOut} 
+      // style={{backgroundColor: hoverEffect ? "#ffffffaf" : "white"}}
       >
         Submit
       </button>
+
     </div>
   );
 }
